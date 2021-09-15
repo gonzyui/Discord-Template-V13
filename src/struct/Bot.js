@@ -33,7 +33,9 @@ module.exports = class Bot extends Client {
             const interaction = new File();
             interaction.client = this;
             this.interactions.set(interaction.name, interaction);
-            this.application?.commands.create(interaction);
+            this.guilds.cache.map(x => x.id).forEach(id => {
+                this.guilds.cache.get(guildId || id)?.commands.create(interaction);
+            })
         })
     }
 
