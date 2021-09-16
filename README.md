@@ -5,10 +5,7 @@ An easy-to-use discord bot using [Discord.JS](https://discord.js.org) V13.
 Includes:
 - Slash commands
 - Database
-<<<<<<< HEAD
 - User commands
-=======
->>>>>>> e2ed788f60904c0c4d73b0763d9ec8ea1b083a11
 <br>
 and more in future
 
