@@ -7,5 +7,6 @@ module.exports = class guildCreate extends Event {
     }
     async exec(guild) {
         await this.client.loadInteractions(guild.id);
+        this.client.logger.log(`${guild.name}(${guild.id}) just added me!`, { tag: 'guildCreate' });
     }
 }

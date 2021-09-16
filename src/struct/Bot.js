@@ -1,4 +1,5 @@
 const { Client, Collection, Intents } = require('discord.js');
+const { connect, connection: db } = require('mongoose');
 const { resolve } = require('path');
 const { sync } = require('glob');
 
@@ -14,7 +15,6 @@ module.exports = class Bot extends Client {
                 repliedUser: false,
             },
         });
-        this.prefix = process.env.PREFIX;
         this.cooldowns = new Collection();
         this.commands = new Collection();
         this.events = new Collection();
@@ -22,10 +22,52 @@ module.exports = class Bot extends Client {
         this.owners = ["280045641604792322"];
         this.logger = require('../utils/Logger');
         this.interactions = new Collection();
+
+        this.database = {};
+        this.guildsData = require('../models/Guilds');
+        this.database.guilds = new Collection();
+
+        db.on('connected', async () => this.logger.log(`Successfully connected to the database! (Latency: ${Math.round(await this.databasePing())}ms)`, { tag: 'Database' }));
+        db.on('disconnected', () => this.logger.error('Disconnected from the database!', { tag: 'Database' }));
+        db.on('error', (error) => this.logger.error(`Unable to connect to the database!\nError: ${error}`, { tag: 'Database' }));
+        db.on('reconnected', async () => this.logger.log(`Reconnected to the database! (Latency: ${Math.round(await this.databasePing())}ms)`, { tag: 'Database' }));
     }
 
-    // Load slash commands
-    async loadInteractions() {
+    async findGuild({ guildID: guildId }, check) {
+        if (this.database.guilds.get(guildId)) {
+            return check ? this.database.guilds.get(guildId).toJSON() : this.database.guilds.get(guildId);
+        } else {
+            let guildData = check ? await this.guildsData.findOne({ guildID: guildId }).lean() : await this.guildsData.findOne({ guildID: guildId });
+            if (guildData) {
+                if (!check) this.database.guilds.set(guildId, guildData);
+                return guildData;
+            }  else {
+                guildData = new this.guildsData({ guildID: guildId });
+                await guildData.save();
+                this.database.guilds.set(guildId, guildData);
+                return check ? guildData.toJSON() : guildData;
+            }
+        }
+    }
+
+    /* Start database */
+    async loadDatabase() {
+        return await connect(process.env.MONGO, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+    }
+
+    /* Get database ping */
+    async databasePing() {
+        const cNano = process.hrtime();
+        await db.db.command({ ping: 1 });
+        const time = process.hrtime(cNano);
+        return (time[0] * 1e9 + time[1]) * 1e-6;
+    }
+
+    /* Load slash commands for each guilds */
+    async loadInteractions(guildId) {
         const intFile = await sync(resolve('./src/slash/**/*.js'));
         intFile.forEach((filepath) => {
             const File = require(filepath);
@@ -39,8 +81,7 @@ module.exports = class Bot extends Client {
         })
     }
 
-
-    // Load basic commands
+    /* Load basic commands */
     async loadCommands() {
         const cmdFile = await sync(resolve('./src/commands/**/*.js'));
         cmdFile.forEach((filepath) => {
@@ -54,7 +95,8 @@ module.exports = class Bot extends Client {
             })
         })
     }
-    // Load events
+
+    /* Load events */
     async loadEvents() {
         const evtFile = await sync(resolve('./src/events/**/*.js'));
         evtFile.forEach((filepath) => {
@@ -67,10 +109,12 @@ module.exports = class Bot extends Client {
             emitter[event.type ? "once": "on"](event.name, (...args) => event.exec(...args));
         })
     }
-    // Start function
+
+    /* Start the bot */
     async start(token) {
-        this.loadCommands();
-        this.loadEvents();
-        super.login(token);
+        await this.loadCommands();
+        await this.loadEvents();
+        await this.loadDatabase();
+        return super.login(token);
     }
 }
