@@ -5,6 +5,7 @@ An easy-to-use discord bot using [Discord.JS](https://discord.js.org) V13.
 Includes:
 - Slash commands
 - Database
+- User commands
 <br>
 and more in future
 
