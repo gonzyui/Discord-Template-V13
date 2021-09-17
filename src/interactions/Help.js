@@ -1,38 +1,37 @@
-const { embed, removeDuplicates, formatPerms, formatArray } = require('../../utils/Utils');
+const { embed, removeDuplicates, formatPerms } = require('../utils/Utils');
 
-module.exports = class Help extends Command {
+module.exports = class SlashHelp extends Interaction {
     constructor() {
         super({
             name: "help",
-            aliases: ["?", "commands"],
             description: "Help command",
-            usage: "<command>",
-            category: "Misc",
-            ownerOnly: false,
-            cooldown: 3000,
-            memberPerms: [],
-            clientPerms: [],
+            options: [{
+                name: 'command',
+                description: 'Name of command you want to show informations',
+                type: 'STRING',
+                required: false,
+            }]
         });
     }
-    async exec(message, args, data) {
-        const cmd = this.client.commands.get(args[0]) || this.client.commands.get(this.client.aliases.get(args[0]));
+    async exec(interaction, data) {
+        const cmd = this.client.commands.get(interaction.options.getString('command')) || this.client.commands.get(this.client.aliases.get(interaction.options.getString('command')));
         let emb;
         if (!cmd) {
             emb = embed()
-                .setColor(message.member.displayHexColor)
+                .setColor(interaction.guild.members.cache.get(interaction.user.id).displayHexColor)
                 .setTitle('Help panel')
-                .setThumbnail(message.guild.iconURL({ dynamic: true }));
+                .setThumbnail(interaction.guild.iconURL({ dynamic: true }));
             const categories = removeDuplicates(this.client.commands.map(cmd => cmd.category));
             for (const category of categories) {
                 const dir = this.client.commands.filter(cmd => cmd.category === category);
                 await emb.addField(`__${category}__ [${dir.size}]`, `${this.client.commands.filter(cmd => cmd.category === category).map(cmd => `\`${cmd.name}\``).join(' ')}`);
             }
-            return message.channel.send({ embeds: [emb] });
+            return interaction.reply({ ephemeral: true, embeds: [emb] });
         } else {
             emb = embed()
-                .setColor(message.member.displayHexColor)
+                .setColor(interaction.guild.members.cache.get(interaction.user.id).displayHexColor)
                 .setTitle('Help panel')
-                .setThumbnail(message.guild.iconURL({ dynamic: true }))
+                .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                 .setDescription([
                     `**Aliases:** ${cmd.aliases.length ? cmd.aliases.map(alias => `\`${alias}\``).join(' ') : `No aliases.`}`,
                     `**Description:** ${cmd.description}`,
@@ -41,7 +40,7 @@ module.exports = class Help extends Command {
                     `**Cooldown:** ${cmd.cooldown / 1000} seconds`,
                     `**Usage:** \`${`${data.guild?.prefix}${cmd.name} ${cmd.usage || ''}`.trim()}\``,
                 ].join('\n'));
-            return message.channel.send({ embeds: [emb] });
+            return interaction.reply({ ephemeral: true, embeds: [emb] });
         }
     }
 }

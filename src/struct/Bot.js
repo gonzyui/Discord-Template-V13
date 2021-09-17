@@ -68,7 +68,7 @@ module.exports = class Bot extends Client {
 
     /* Load slash commands for each guilds */
     async loadInteractions(guildId) {
-        const intFile = await sync(resolve('./src/slash/**/*.js'));
+        const intFile = await sync(resolve('./src/interactions/**/*.js'));
         intFile.forEach((filepath) => {
             const File = require(filepath);
             if (!(File.prototype instanceof Interaction)) return;
