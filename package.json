@@ -1,4 +1,19 @@
 {
+  "name": "discord-template-v13",
+  "version": "1.0.0",
+  "description": "Discord bot template using djs v13, including slash commands, context menus and database",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gonzyui/Discord-Template-V13"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
     "discord.js": "^13.1.0",
