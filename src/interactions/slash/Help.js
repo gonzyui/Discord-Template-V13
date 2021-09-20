@@ -1,4 +1,4 @@
-const { embed, removeDuplicates, formatPerms } = require('../utils/Utils');
+const { embed, removeDuplicates, formatPerms } = require('../../utils/Utils');
 
 module.exports = class SlashHelp extends Interaction {
     constructor() {
