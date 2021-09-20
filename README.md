@@ -1,6 +1,7 @@
 # Discord Bot Template
 
 An easy-to-use discord bot using [Discord.JS](https://discord.js.org) V13.
+[Wiki](https://github.com/gonzyui/Discord-Template-V13/wiki)
 
 Includes:
 - Slash commands
