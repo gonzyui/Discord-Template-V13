@@ -15,7 +15,7 @@ module.exports = class Prefix extends Command {
     async exec(message, [prefix], data) {
         const guildLang = data.guild?.language;
         const translate = require(`../../language/${guildLang}`);
-        if (!prefix) return message.reply(`Actual prefix is ${data.guild?.prefix}`);
+        if (!prefix) return message.reply(`${translate("PREFIX", data.guild?.prefix)}`);
         if (prefix.length > 3) message.reply(`The prefix cannot be longer than 3 characters !`);
         data.guild.prefix = prefix;
         await data.guild.save();
