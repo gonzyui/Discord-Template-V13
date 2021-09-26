@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "discord.js": "^13.1.0",

@@ -1,5 +1,7 @@
 const { Client, Collection, Intents } = require('discord.js');
 const { connect, connection: db } = require('mongoose');
+const { Routes } = require('discord-api-types/v9');
+const { REST } = require('@discordjs/rest');
 const { resolve } = require('path');
 const { sync } = require('glob');
 
@@ -12,6 +14,7 @@ module.exports = class Bot extends Client {
         super({
             intents: Object.values(Intents.FLAGS),
             allowedMentions: {
+                parse: ['roles', 'users'],
                 repliedUser: false,
             },
         });
@@ -75,7 +78,8 @@ module.exports = class Bot extends Client {
             const interaction = new File();
             interaction.client = this;
             this.interactions.set(interaction.name, interaction);
-            this.application?.commands.create(interaction);
+            const res = new REST({ version: '9' }).setToken(process.env.TOKEN);
+            res.post(Routes.applicationCommands(process.env.CLIENT_ID), { body: interaction });
         })
     }
 
@@ -110,9 +114,10 @@ module.exports = class Bot extends Client {
 
     /* Start the bot */
     async start(token) {
-        await this.loadCommands();
         await this.loadEvents();
+        await this.loadCommands();
         await this.loadDatabase();
+        await this.loadInteractions();
         return super.login(token);
     }
 }
