@@ -7,6 +7,11 @@ Includes:
 - Slash commands
 - Database
 - User commands
+
+Languages:
+- French
+- English
+- Spanish
 <br>
 and more in future
 
