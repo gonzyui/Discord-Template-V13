@@ -5,12 +5,9 @@ module.exports = class SlashHelp extends Interaction {
         super({
             name: "help",
             description: "Help command",
-            options: [{
-                name: 'command',
-                description: 'Name of command you want to show informations',
-                type: 'STRING',
-                required: false,
-            }]
+            options: [
+            { type: 3, name: 'command', description: 'Name of command you want to show informations', required: false}
+            ]
         });
     }
     async exec(interaction, data) {
