@@ -4,7 +4,7 @@ module.exports = class Avatar extends Interaction {
     constructor() {
         super({
             name: "Avatar",
-            type: 'USER',
+            type: '2',
             description: 'Gets Avatar'
         });
     }
