@@ -2,10 +2,10 @@ global.Interaction = module.exports = class Interaction {
     constructor(options) {
 
         this.name = options.name || name;
+        this.type = options.type || 1;
+        this.description = this.type === 1 ? options.description || 'No description provided' : undefined;
         this.options = options.options || [];
-        this.type = options.type || 'CHAT_INPUT';
-        this.defaultPermissions = options.defaultPermissions;
-        this.description = this.type === 'CHAT_INPUT' ? options.description || 'No description' : undefined;
+        this.defaultPermission = options.defaultPermission;
     }
 
     async exec(...args) {
