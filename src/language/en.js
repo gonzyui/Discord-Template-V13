@@ -1,5 +1,5 @@
 const languageData = {
-    ACTUAL_PREFIX: (prefix) => `Actual server prefix is: ${prefix}` /* Check in ./src/commands/admin/prefix */
+    PREFIX: (prefix) => `Actual server prefix is: ${prefix}` /* Check in ./src/commands/admin/prefix */
 }
 
 module.exports = translate = (key, ...args) => {
