@@ -9,7 +9,7 @@ require('./Interaction');
 require('./Command');
 require('./Event');
 
-module.exports = class Bot extends Client {
+class Bot extends Client {
     constructor() {
         super({
             intents: Object.values(Intents.FLAGS),
@@ -121,3 +121,5 @@ module.exports = class Bot extends Client {
         return super.login(token);
     }
 }
+
+module.exports = { Bot }
