@@ -12,6 +12,7 @@ Languages:
 - French
 - English
 - Spanish
+- Turkish
 <br>
 and more in future
 
