@@ -45,6 +45,8 @@ Want to contribute and appear here ? Open a [PR](https://github.com/gonzyui/Disc
 
 <table>
   <tr>
-     <td align="center"><a href="https://github.com/gonzyui"><img src="https://cdn.discordapp.com/attachments/869151007542763520/887821613897236490/897bfd4bfa693d751df0a1bd39af28bd.png" width="100px;" alt=""/><br /><sub><b>Gonz#0001</b></sub></a><br /><a title="Owner">👑</a></td>
+     <td align="center"><a href="https://github.com/gonzyui"><img src="https://cdn.discordapp.com/attachments/869151007542763520/887821613897236490/897bfd4bfa693d751df0a1bd39af28bd.png" width="100px;" alt=""/><br /><sub><b>Gonz#0001</b></sub></a><br /><a title="Owner">👑 Project owner</a></td>
+         <td align="center"><a href="https://github.com/RedProcessor"><img src="https://avatars.githubusercontent.com/u/68755582?v=4" width="100px;" alt=""/><br /><sub><b>RedProcessor</b></sub></a><br /><a title="Contributor">Turkish contributor</a></td>
+             <td align="center"><a href="https://github.com/elbkr"><img src="https://avatars.githubusercontent.com/u/77508640?v=4" width="100px;" alt=""/><br /><sub><b>elbkr</b></sub></a><br /><a title="Contributor">Contributor</a></td>
   </tr>
 </table>
