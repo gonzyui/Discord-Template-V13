@@ -26,7 +26,8 @@ and more in future
 
 - Use `git clone gonzyui/Discord-Template-V13` or download the `.zip` file
 - Do `npm i`
-- Edit the `.env.example` to `.env`
+- Edit the `.env.example` to include your token, MongoDB login and the IDs of users that can use owner only commands separated by spaces, like this: `OWNERS=280045641604792322 371384583876509697`
+- Rename `.env.example` to `.env`
 - Now you can run it with `node .`
 
 ## Issues

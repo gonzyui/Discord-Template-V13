@@ -22,7 +22,7 @@ class Bot extends Client {
         this.commands = new Collection();
         this.events = new Collection();
         this.aliases = new Collection();
-        this.owners = ["280045641604792322"];
+        this.owners = process.env.OWNERS.split(' ');
         this.logger = require('../utils/Logger');
         this.interactions = new Collection();
 
