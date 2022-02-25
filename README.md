@@ -7,6 +7,7 @@ Includes:
 - Slash commands
 - Database
 - User commands
+- Greetings
 
 Languages:
 - French
@@ -49,7 +50,7 @@ Want to contribute and appear here ? Open a [PR](https://github.com/gonzyui/Disc
      <td align="center"><a href="https://github.com/gonzyui"><img src="https://avatars.githubusercontent.com/u/78351336?s=400&u=f473042a40be2436a085c0fc4ed6130125b619d7&v=4" width="100px;" alt=""/><br /><sub><b>Gonz#0001</b></sub></a><br /><a title="Owner">👑 Project owner</a></td>
          <td align="center"><a href="https://github.com/RedProcessor"><img src="https://avatars.githubusercontent.com/u/68755582?v=4" width="100px;" alt=""/><br /><sub><b>RedProcessor</b></sub></a><br /><a title="Contributor">Turkish contributor</a></td>
              <td align="center"><a href="https://github.com/elbkr"><img src="https://avatars.githubusercontent.com/u/77508640?v=4" width="100px;" alt=""/><br /><sub><b>elbkr</b></sub></a><br /><a title="Contributor">Contributor</a></td>
-    <td align="center"><a href="https://github.com/tatsumara"><img src="https://avatars.githubusercontent.com/u/50183230?v=4" width="100px;" alt=""/><br /><sub><b>tatsumara</b></sub></a><br /><a title="Contributor">Contributor</a></td>
+      <td align="center"><a href="https://github.com/tatsumara"><img src="https://avatars.githubusercontent.com/u/50183230?v=4" width="100px;" alt=""/><br /><sub><b>tatsumara</b></sub></a><br /><a title="Contributor">Contributor</a></td>
   </tr>
   </tr>
 </table>

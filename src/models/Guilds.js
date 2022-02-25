@@ -5,4 +5,5 @@ module.exports = model('Guilds', new Schema({
     prefix: { type: String, default: '!' },
     language: { type: String, default: 'en' },
     welcomeChannel: { type: String, default: null },
+    goodbyeChannel: { type: String, default: null },
 }))
