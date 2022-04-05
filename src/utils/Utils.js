@@ -18,7 +18,7 @@ module.exports = class Util {
 			.replace(/And/g, 'and')
 			.replace(/Guild/g, 'Server')
 			.replace(/Tts/g, 'Text-to-Speech')
-			.replace(/Use Vad/g, 'Use Voice Acitvity');
+			.replace(/Use Vad/g, 'Use Voice Activity');
     }
 
     static formatArray(array, type = 'conjunction') {
