@@ -1,5 +1,5 @@
 const languageData = {
-    PREFIX: (prefix) => `O prefixo atual é: ${prefix}` /* Check in ./src/commands/admin/prefix */
+    PREFIX: (prefix) => `O prefixo atual é: ${prefix}` /* Veja em ./src/commands/admin/prefix */
 }
 
 module.exports = translate = (key, ...args) => {
